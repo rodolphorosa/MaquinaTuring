@@ -1,0 +1,36 @@
+		/*Esta máquina identifica as linguagens do tipo a^n b^n */
+		/*Cole a parte abaixo no código do Main na área limitada pelos comentários*/
+		
+		Estado[] est = new Estado[5];
+		est[0] = new Estado("q0");
+		est[1] = new Estado("q1");
+		est[2] = new Estado("q2");
+		est[3] = new Estado("q3");
+		est[4] = new Estado("q4");
+		
+		AlfabetoEntrada alfa = new AlfabetoEntrada();
+		alfa.setAlfabeto('a');
+		alfa.setAlfabeto('b');
+        alfa.setAlfabeto('$');
+        alfa.setAlfabeto('#');
+		
+		AlfabetoAuxiliar alfa_aux = new AlfabetoAuxiliar();
+		alfa_aux.setAlfabeto('A');
+		alfa_aux.setAlfabeto('B');
+		
+		Transicoes[] trans = new Transicoes[13];
+		trans[0] = new Transicoes(est[0], est[0], '$', '$', 'd');
+		trans[1] = new Transicoes(est[0], est[1], 'a', 'A', 'd');
+		trans[2] = new Transicoes(est[0], est[4], '#', '#', 'd');
+		trans[3] = new Transicoes(est[0], est[3], 'B', 'B', 'd');
+		trans[4] = new Transicoes(est[3], est[3], 'B', 'B', 'd');
+		trans[5] = new Transicoes(est[1], est[1], 'a', 'a', 'd');
+		trans[6] = new Transicoes(est[1], est[1], 'B', 'B', 'd');
+		trans[7] = new Transicoes(est[1], est[2], 'b', 'B', 'e');
+		trans[8] = new Transicoes(est[2], est[2], 'a', 'a', 'e');
+		trans[9] = new Transicoes(est[2], est[2], 'B', 'B', 'e');
+		trans[10] = new Transicoes(est[2], est[0], 'A', 'A', 'd');
+		trans[11] = new Transicoes(est[3], est[3], 'B', 'B', 'd');
+		trans[12] = new Transicoes(est[3], est[4], '#', '#', 'd');
+		
+		Maquina m = new Maquina(est, est[0], est[4], alfa, alfa_aux, trans);

@@ -1,0 +1,30 @@
+		/* Esta máquina identifica as linguagens do tipo a*b* */
+		
+		Estado[] est = new Estado[4];
+		est[0] = new Estado("q0");
+		est[1] = new Estado("q1");
+		est[2] = new Estado("q2");
+		est[3] = new Estado("qf");
+		
+		AlfabetoEntrada alfa = new AlfabetoEntrada();
+		alfa.setAlfabeto('a');
+		alfa.setAlfabeto('b');
+        alfa.setAlfabeto('$');
+        alfa.setAlfabeto('#');
+		
+		AlfabetoAuxiliar alfa_aux = new AlfabetoAuxiliar();
+		alfa_aux.setAlfabeto('A');
+		alfa_aux.setAlfabeto('B');
+		
+		Transicoes[] trans = new Transicoes[9];
+		trans[0] = new Transicoes(est[0], est[0], '$', '$', 'd');
+		trans[1] = new Transicoes(est[0], est[1], 'a', 'a', 'd');
+		trans[2] = new Transicoes(est[0], est[3], '#', '#', 'd');
+		trans[3] = new Transicoes(est[1], est[1], 'a', 'a', 'd');
+		trans[4] = new Transicoes(est[1], est[2], 'b', 'b', 'd');
+		trans[5] = new Transicoes(est[1], est[3], '#', '#', 'd');
+		trans[6] = new Transicoes(est[2], est[2], 'b', 'b', 'd');
+		trans[7] = new Transicoes(est[2], est[3], '#', '#', 'd');
+		trans[8] = new Transicoes(est[0], est[2], 'b', 'b', 'd');
+		
+		Maquina m = new Maquina(est, est[0], est[3], alfa, alfa_aux, trans);
